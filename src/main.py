@@ -43,6 +43,7 @@ while True:
         face_roi = frame[y:y+h, x:x+w]
 
         current_time = time.time()
+        print(current_time)
         if current_time - last_capture_time >= 1:
             # Salve a imagem do rosto
             face_id += 1
