@@ -14,7 +14,7 @@ if not cap.isOpened():
     exit()
 
 face_id = 0
-last_capture_time = time.time()  # Tempo da última captura
+times = time.time()
 
 while True:
     # Capture frame a frame
@@ -38,13 +38,11 @@ while True:
     for (x, y, w, h) in faces:
         cv2.rectangle(frame, (x, y), (x + w, y + h), (255, 0, 0), 2)
 
-        
         # Recorte a região do rosto
         face_roi = frame[y:y+h, x:x+w]
 
-        current_time = time.time()
-        print(current_time)
-        if current_time - last_capture_time >= 1:
+        if time.time() - times >= 1.5:
+            times = time.time()
             # Salve a imagem do rosto
             face_id += 1
             file_path = os.path.join('imgs', f'face_{face_id}.jpg')
